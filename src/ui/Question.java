@@ -5,22 +5,24 @@
  */
 package ui;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ButtonModel;
 import org.json.JSONObject;
+import quiz.AppData;
+import quiz.Quiz;
 
 /**
  *
  * @author Neil
  */
 public class Question extends javax.swing.JFrame {
+    private AppData appData;
     private quiz.Quiz quiz;
     private quiz.Question question;
     /**
      * Creates new form Question
      */
-    public Question(quiz.Quiz quiz) {
+    public Question(AppData appData, Quiz quiz) {
+        this.appData = appData;
         this.quiz = quiz;
         question = quiz.getNextQuestion();
         initComponents();
@@ -157,9 +159,17 @@ public class Question extends javax.swing.JFrame {
         }
         
         question.setUserAnswer(answer);
+        
+        // Dump question to console
         JSONObject jsonQuestion = new JSONObject(question);
         System.out.println(jsonQuestion.toString());
-        //question.setUserAnswer();
+        
+        if (answer != question.getAnswer()) {
+            this.setVisible(false);
+            new FakeError(appData, quiz).setVisible(true);
+            return;
+        }
+        
         quiz.Question nextQuestion = quiz.getNextQuestion();
         if (nextQuestion == null) {
             System.exit(0);

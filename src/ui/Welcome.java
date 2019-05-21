@@ -74,7 +74,7 @@ public class Welcome extends javax.swing.JFrame {
     private void buttonStartQuizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStartQuizActionPerformed
         Quiz quiz = new Quiz(appData);
         this.setVisible(false);
-        new Question(quiz).setVisible(true);
+        new Question(appData, quiz).setVisible(true);
     }//GEN-LAST:event_buttonStartQuizActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

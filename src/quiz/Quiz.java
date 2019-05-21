@@ -35,4 +35,12 @@ public class Quiz {
         
         return questions[currentQuestion];
     }
+    
+    public Question getCurrentQuestion() {
+        if (currentQuestion >= questions.length) {
+            return null;
+        }
+        
+        return questions[currentQuestion];
+    }
 }
