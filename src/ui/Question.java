@@ -5,6 +5,7 @@
  */
 package ui;
 
+import static java.lang.Integer.parseInt;
 import javax.swing.ButtonModel;
 import org.json.JSONObject;
 import quiz.AppData;
@@ -18,6 +19,7 @@ public class Question extends javax.swing.JFrame {
     private AppData appData;
     private quiz.Quiz quiz;
     private quiz.Question question;
+
     /**
      * Creates new form Question
      */
@@ -61,12 +63,16 @@ public class Question extends javax.swing.JFrame {
         Question.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         AnswerGroup.add(AnswerButton1);
+        AnswerButton1.setActionCommand("0");
 
         AnswerGroup.add(AnswerButton2);
+        AnswerButton2.setActionCommand("1");
 
         AnswerGroup.add(AnswerButton3);
+        AnswerButton3.setActionCommand("2");
 
         AnswerGroup.add(AnswerButton4);
+        AnswerButton4.setActionCommand("3");
 
         jScrollPane1.setViewportView(Clue);
 
@@ -146,17 +152,7 @@ public class Question extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonClueActionPerformed
 
     private void ButtonNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonNextActionPerformed
-        ButtonModel selection = AnswerGroup.getSelection();
-        int answer;
-        if (selection == AnswerButton1.getModel()) {
-            answer = 0;
-        } else if (selection == AnswerButton2.getModel()) {
-            answer = 1;
-        } else if (selection == AnswerButton3.getModel()) {
-            answer = 2;
-        } else {
-            answer = 3;
-        }
+        int answer = parseInt(AnswerGroup.getSelection().getActionCommand());
         
         question.setUserAnswer(answer);
         
